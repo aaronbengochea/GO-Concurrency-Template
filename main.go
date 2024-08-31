@@ -51,6 +51,10 @@ func main() {
 	// group finished. Best practice to always let waitgroup know how many goroutines
 	// to expect.
 	wg.Add(2)
+	go printNumbersChannel(sampleChannel, &wg)
+	generateNumbersChannel(3, sampleChannel, &wg)
+
+	close(sampleChannel)
 
 	// These represent two goroutines which are ran concurrently
 	//go printNumbers(&wg)
